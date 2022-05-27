@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainScreenFragment">
+
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.starzplay.assignment.view.fragments.main.MainScreenFragment"
+        android:label="MainScreenFragment">
+        <action
+            android:id="@+id/action_mainScreenFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/mainScreenFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.starzplay.assignment.view.fragments.detail.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="itemData"
+            app:argType="com.starzplay.networking.models.Results" />
+        <action
+            android:id="@+id/action_detailsFragment_to_playerScreenFragment"
+            app:destination="@id/playerScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerScreenFragment"
+        android:name="com.starzplay.assignment.view.fragments.player.PlayerScreenFragment"
+        android:label="fragment_player_screen"
+        tools:layout="@layout/fragment_player_screen" >
+        <argument
+            android:name="itemData"
+            app:argType="com.starzplay.networking.models.Results" />
+    </fragment>
+</navigation>
