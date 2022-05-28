@@ -2,20 +2,21 @@ package com.starzplay.assignment.view.fragments.player
 
 import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
-import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.potyvideo.library.globalEnums.EnumResizeMode
+import com.potyvideo.library.globalInterfaces.AndExoPlayerListener
 import com.starzplay.assignment.R
 import com.starzplay.assignment.databinding.FragmentPlayerScreenBinding
 
 
-class PlayerScreenFragment : Fragment() {
+class PlayerScreenFragment : Fragment(), AndExoPlayerListener {
     var videoUrl =
         "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
     private val arg: PlayerScreenFragmentArgs by navArgs()
@@ -36,6 +37,17 @@ class PlayerScreenFragment : Fragment() {
         return binding.root
     }
 
+    override fun onExoPlayerError(errorMessage: String?) {
+        super.onExoPlayerError(errorMessage)
+        Log.d("testing", errorMessage ?: "Message")
+    }
+
+    override fun onExoEnded() {
+        super.onExoEnded()
+        toggleVideoMode(imageView = true, playButton = true)
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toggleVideoMode(imageView = true, playButton = true)
@@ -49,14 +61,10 @@ class PlayerScreenFragment : Fragment() {
     fun playVideo() {
         toggleVideoMode(videoView = true)
         binding.videoView.apply {
-            val uri: Uri = Uri.parse(videoUrl)
-            setVideoURI(uri)
-            val mediaController = MediaController(requireContext()).also {
-                it.setAnchorView(this)
-                it.setMediaPlayer(this)
-            }
-            setMediaController(mediaController)
-            start()
+            setResizeMode(EnumResizeMode.ZOOM) // sync with attrs
+            setAndExoPlayerListener(this@PlayerScreenFragment)
+            setPlayWhenReady(true)
+            setSource(videoUrl)
         }
     }
 

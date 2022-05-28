@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/starzplayassignment/app/src/main/res/layout/fragment_player_screen.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/StarzplayAssignment/app/src/main/res/drawable-v24/ic_play_icon.xml" value="0.152" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/StarzplayAssignment/app/src/main/res/drawable/ic_tmdb.xml" value="0.152" />
         <entry key="..\:/Users/kamra/AndroidStudioProjects/StarzplayAssignment/app/src/main/res/drawable/tmdb_gradient.xml" value="0.152" />

@@ -43,11 +43,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:playbutton="@{itemdata}" />
 
-        <VideoView
+        <com.potyvideo.library.AndExoPlayerView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
